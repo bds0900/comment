@@ -6,7 +6,7 @@ import { getMainDefinition } from 'apollo-utilities';
 import { ApolloClient } from "apollo-client";
 import { setContext } from 'apollo-link-context';
 const httpLink = new HttpLink({
-  uri: 'https://murmuring-fortress-24950.herokuapp.com/'
+  uri: 'http://localhost:5000/graphql'
 });
   
 // Create a WebSocket link:

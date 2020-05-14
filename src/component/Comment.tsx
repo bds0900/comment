@@ -4,16 +4,17 @@ interface Props {
     comment:CommentType;
 }
 interface CommentType{
-    id:string;
-    name:string;
-    password:string;
+    _id:string;
+    email:string;
+    time:string;
     content:string;
+    reply:CommentType[];
 }
 const Comment = (props: Props) => {
     const comment= props.comment;
     return (
         <div>
-            
+           {comment.content} 
         </div>
     )
 }

@@ -10,10 +10,11 @@ interface CommentListType{
     comments:CommentType[]
 }
 interface CommentType{
-    id:string;
-    name:string;
-    password:string;
+    _id:string;
+    email:string;
+    time:string;
     content:string;
+    reply:CommentType[];
 }
 const CommentList = (props: Props) => {
     const{loading,data}= useQuery<CommentListType,{}>(
