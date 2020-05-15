@@ -22,14 +22,15 @@ const CommentList = (props: Props) => {
     );
     return (
         <div>
+            Commnet List
             {loading?(<p>Loading...</p>):
                 (<div>
                 <List>
-                {data && data.comments.map(comment=>(
-                <ListItem>
-                <Comment comment={comment}/>
-                </ListItem>
-                ))}
+                    {data && data.comments.map(comment=>(
+                    <ListItem key={comment._id}>
+                    <Comment comment={comment}/>
+                    </ListItem>
+                    ))}
                 </List>
                 </div>)
             }
