@@ -4,8 +4,10 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import { List,ListItem } from '@material-ui/core';
+import { List,ListItem, IconButton } from '@material-ui/core';
 import ListItemText from '@material-ui/core/ListItemText';
+import ReplyIcon from '@material-ui/icons/Reply';
+
 interface Props {
     comment:CommentType;
 }
@@ -26,9 +28,23 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     paper: {
       padding: theme.spacing(2),
-      textAlign: 'center',
+      textAlign: 'left',
       color: theme.palette.text.secondary,
     },
+    margin: {
+        margin: theme.spacing(1),
+    },
+    email:{
+        margin: theme.spacing(1)
+    },
+    date:{
+        margin: theme.spacing(1)
+    },
+    comment:{
+        width:'80%',
+        margin: theme.spacing(1),
+        wordWrap: 'break-word'
+    }
   }),
 );
 
@@ -40,25 +56,19 @@ const Comment = (props: Props) => {
         <div>
         <Grid container className={classes.root}>
 
-            <Grid item xs={6} sm={6}>
-                <Typography variant="body2" gutterBottom >
+            <span className={classes.email}>
                 {comment.email}
-                </Typography>
-            </Grid>
-            <Grid item xs={6} sm={6}>
-                <Typography variant="body2" gutterBottom >
+            </span>
+            <span className={classes.date}>
                 {comment.time}
-                </Typography>
-            </Grid>
+            </span>
             
-            <Grid item xs={6} sm={6}>
-                <Typography variant="body2" gutterBottom >
+            <div className={classes.comment}>
                 {comment.content}
-                </Typography>
-            </Grid>
-            
+            </div>
         </Grid>
-        <div style={{width:'20%'}}/>
+
+        
         <Grid>
         
             <List>
@@ -70,6 +80,7 @@ const Comment = (props: Props) => {
             ))}
             </List>  
         </Grid>
+        
         </div>
     )
 }
