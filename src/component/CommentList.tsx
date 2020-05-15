@@ -14,7 +14,7 @@ interface CommentType{
     email:string;
     time:string;
     content:string;
-    reply:CommentType[];
+    replies:CommentType[];
 }
 const CommentList = (props: Props) => {
     const{loading,data}= useQuery<CommentListType,{}>(

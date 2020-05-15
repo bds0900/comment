@@ -14,7 +14,7 @@ interface CommentType{
     email:string;
     time:string;
     content:string;
-    reply:CommentType[];
+    replies:CommentType[];
 }
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -62,9 +62,9 @@ const Comment = (props: Props) => {
         <Grid>
         
             <List>
-            {comment.reply && comment.reply.map(reply=>(
+            {comment.replies && comment.replies.map(reply=>(
                 <ListItem key={reply._id}>
-                
+                    
                 <Comment comment={reply}/>
                 </ListItem>
             ))}

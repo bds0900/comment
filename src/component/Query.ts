@@ -9,6 +9,9 @@ export const GET_COMMENTS = gql`
       content
       replies{
         _id
+        email
+        time
+        content
       }
     }
 }
@@ -20,7 +23,12 @@ query GET_COMMENT($id:ID){
     email
     time
     content
-    reply
+    replies{
+      _id
+      email
+      time
+      content
+    }
   }
 }
 `;
