@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import { List,ListItem, IconButton } from '@material-ui/core';
+import { List,ListItem, IconButton, TextField } from '@material-ui/core';
 import ListItemText from '@material-ui/core/ListItemText';
 import ReplyIcon from '@material-ui/icons/Reply';
 
@@ -80,6 +80,9 @@ const Comment = (props: Props) => {
             ))}
             </List>  
         </Grid>
+        
+
+
         
         </div>
     )
