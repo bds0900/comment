@@ -19,7 +19,7 @@ export const GET_COMMENTS = gql`
 export const GET_COMMENT = gql`
 query GET_COMMENT($id:ID){
   comment(id:$id){
-    id
+    _id
     email
     time
     content
