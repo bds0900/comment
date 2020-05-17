@@ -5,27 +5,18 @@ import Comment from './Comment';
 import { List,ListItem, TextField, Button } from '@material-ui/core';
 import { CREATE_COMMENT } from './Mutation';
 import CreateComment from './CreateComment';
+import {CommentType} from './Interface'
 interface Props {
     
 }
 interface CommentListType{
     comments:CommentType[]
 }
-interface CommentType{
-    _id:string;
-    email:string;
-    time:string;
-    content:string;
-    replies:CommentType[];
-}
+
 const CommentList = (props: Props) => {
-
-
     const{loading,data}= useQuery<CommentListType,{}>(
         GET_COMMENTS
     );
-
-    
     return (
         <div >
             Commnet List
