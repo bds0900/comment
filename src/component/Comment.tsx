@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-import { List,ListItem, IconButton, TextField } from '@material-ui/core';
+import { List,ListItem, IconButton, TextField, Button } from '@material-ui/core';
 import ListItemText from '@material-ui/core/ListItemText';
 import ReplyIcon from '@material-ui/icons/Reply';
-
+import CreateReply from './CreateReply';
+import SubdirectoryArrowRightIcon from '@material-ui/icons/SubdirectoryArrowRight';
 interface Props {
     comment:CommentType;
 }
@@ -52,6 +53,7 @@ const useStyles = makeStyles((theme: Theme) =>
 const Comment = (props: Props) => {
     const comment= props.comment;
     const classes = useStyles();
+    const [addComment, setAddComment]=useState(false);
     return (
         <div>
         <Grid container className={classes.root}>
@@ -76,11 +78,14 @@ const Comment = (props: Props) => {
                 <ListItem key={reply._id}>
                     
                 <Comment comment={reply}/>
+                
                 </ListItem>
             ))}
             </List>  
         </Grid>
-        
+        <Button onClick={()=>setAddComment(!addComment)}><SubdirectoryArrowRightIcon/>reply</Button>
+
+        {addComment?<CreateReply comment={comment._id}/>:null}
 
 
         

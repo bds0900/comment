@@ -1,17 +1,16 @@
 import React from 'react'
-import { CREATE_COMMENT } from './Mutation'
-import { useMutation } from '@apollo/react-hooks'
 import { TextField, Button } from '@material-ui/core'
-import { CommentType } from './Interface'
+import { CREATE_REPLY } from './Mutation';
+import { useMutation } from '@apollo/react-hooks';
+import { CommentType } from './Interface';
 
 interface Props {
-
+    comment:string
 }
 interface CommentData{
-    createComment:CommentType
+    createReply:CommentType
 }
-const CreateComment = (props: Props) => {
-
+const CreateReply = (props: Props) => {
     const [email, setEmail] = React.useState('');
     const [content, setContent] = React.useState('');
     function save() {
@@ -20,11 +19,10 @@ const CreateComment = (props: Props) => {
         setEmail('');
     }
     const [saveComment, { error, data }]=  useMutation<CommentData,{}>(
-        CREATE_COMMENT,
-        {variables:{email:email,content:content}}
+        CREATE_REPLY,
+        {variables:{email:email,content:content, comment:props.comment}}
     )
     return (
-        
         <div style={{textAlign:'left',padding:16}}>
             {error ? <p> {error.message}</p> : null}
             
@@ -39,7 +37,7 @@ const CreateComment = (props: Props) => {
             </div>
             <div>
             <TextField
-                placeholder="Leave a comment here"
+                placeholder="Leave a reply here"
                 multiline
                 rows={2}
                 rowsMax={4}
@@ -49,11 +47,10 @@ const CreateComment = (props: Props) => {
             />
             </div>
             <div style={{marginTop:10}}>
-            <Button variant="contained" onClick={()=>save()}>comment</Button>
+            <Button variant="contained" onClick={()=>save()}>reply</Button>
             </div>
         </div>
-        
     )
 }
 
-export default CreateComment
+export default CreateReply

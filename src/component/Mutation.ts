@@ -11,7 +11,7 @@ export const CREATE_COMMENT=gql`
 
 export const CREATE_REPLY=gql`
     mutation CREATE_REPLY($email:String!,$content:String,$comment:ID){
-        addReply(email:$email,contetn:$content,comment:$comment)
+        addReply(email:$email,content:$content,comment:$comment)
         {
             _id
         }
