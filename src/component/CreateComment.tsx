@@ -14,7 +14,11 @@ const CreateComment = (props: Props) => {
 
     const [email, setEmail] = React.useState('');
     const [content, setContent] = React.useState('');
-
+    function save() {
+        saveComment();
+        setContent('');
+        setEmail('');
+    }
     const [saveComment, { error, data }]=  useMutation<CommentData,{}>(
         CREATE_COMMENT,
         {variables:{email:email,content:content}}
@@ -45,7 +49,7 @@ const CreateComment = (props: Props) => {
             />
             </div>
             <div style={{marginTop:10}}>
-            <Button variant="contained" onClick={()=>saveComment()}>comment</Button>
+            <Button variant="contained" onClick={()=>save()}>comment</Button>
             </div>
         </div>
         
