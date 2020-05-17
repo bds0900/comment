@@ -5,5 +5,5 @@ export interface CommentType{
     time:string;
     content:string;
     comment:string;
-    reply:CommentType[]
+    replies:CommentType[]
 }
