@@ -3,6 +3,7 @@ import { TextField, Button } from '@material-ui/core'
 import { CREATE_REPLY } from './Mutation';
 import { useMutation } from '@apollo/react-hooks';
 import { CommentType } from './Interface';
+import { GET_COMMENT } from './Query';
 const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 interface Props {
     comment:string
@@ -21,7 +22,10 @@ const CreateReply = (props: Props) => {
     }
     const [saveComment, { error, data }]=  useMutation<CommentData,{}>(
         CREATE_REPLY,
-        {variables:{email:email,content:content, comment:props.comment}}
+        {
+            variables:{email:email,content:content, comment:props.comment},
+            refetchQueries:[{query:GET_COMMENT, variables: { id:props.comment}}]
+        }
     )
     return (
         <div style={{textAlign:'left',padding:16}}>
@@ -51,9 +55,9 @@ const CreateReply = (props: Props) => {
             />
             </div>
             <div style={{marginTop:10}}>
-            <Button variant="contained" 
+            <Button variant="contained"
             disabled={emailValid !== 'success'}
-            onClick={()=> emailValid && save()}>reply</Button>
+            onClick={()=> email && save()}>reply</Button>
             </div>
         </div>
     )
