@@ -17,6 +17,8 @@ const CommentList = (props: Props) => {
     const{loading,data}= useQuery<CommentListType,{}>(
         GET_COMMENTS
     );
+
+    console.log("fetching....")
     return (
         <div >
             Commnet List
@@ -29,7 +31,7 @@ const CommentList = (props: Props) => {
                     </ListItem>
                     ))}
                 </List>
-                <CreateComment/>
+                <CreateComment />
                 </div>)
             }
         </div>

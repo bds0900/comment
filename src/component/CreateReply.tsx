@@ -3,7 +3,7 @@ import { TextField, Button } from '@material-ui/core'
 import { CREATE_REPLY } from './Mutation';
 import { useMutation } from '@apollo/react-hooks';
 import { CommentType } from './Interface';
-
+const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 interface Props {
     comment:string
 }
@@ -13,6 +13,7 @@ interface CommentData{
 const CreateReply = (props: Props) => {
     const [email, setEmail] = React.useState('');
     const [content, setContent] = React.useState('');
+    const [emailValid,setEmailValid] =React.useState<"success" | "error" | "warning" | undefined>()
     function save() {
         saveComment();
         setContent('');
@@ -31,7 +32,10 @@ const CreateReply = (props: Props) => {
                 id="outlined-name"
                 label="Email"
                 value={email}
-                onChange={(event)=>setEmail(event.target.value)}
+                onChange={(event)=>{
+                    setEmail(event.target.value)
+                    setEmailValid(emailRegex.test(event.target.value.toLowerCase()) ? 'success' : 'error')
+                }}
                 variant="outlined"
             />
             </div>
@@ -47,7 +51,9 @@ const CreateReply = (props: Props) => {
             />
             </div>
             <div style={{marginTop:10}}>
-            <Button variant="contained" onClick={()=>save()}>reply</Button>
+            <Button variant="contained" 
+            disabled={emailValid !== 'success'}
+            onClick={()=> emailValid && save()}>reply</Button>
             </div>
         </div>
     )
