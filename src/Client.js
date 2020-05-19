@@ -3,10 +3,11 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { HttpLink,createHttpLink } from 'apollo-link-http';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
-import { ApolloClient } from "apollo-client";
+//import { ApolloClient } from "apollo-client";
+import  ApolloClient  from "apollo-boost";
 import { setContext } from 'apollo-link-context';
 const httpLink = new HttpLink({
-  uri: 'http://localhost:5000/graphql'
+  uri: 'https://floating-mountain-36472.herokuapp.com/graphql'
 });
   
 // Create a WebSocket link:
@@ -45,19 +46,20 @@ const link = split(
   
 
 const client=new ApolloClient({
-    link,
-    cache: new InMemoryCache(),
-    credentials: 'include',
-    request: async operation => {
-      operation.setContext({
-        fetchOptions: {
-          credentials: 'same-origin'
-        }
-      })
-    },
-    fetchOptions: {
-      credentials: 'include'
-   }
+    //link,
+    uri: 'http://localhost:5000/graphql',
+  //   cache: new InMemoryCache(),
+  //   credentials: 'include',
+  //   request: async operation => {
+  //     operation.setContext({
+  //       fetchOptions: {
+  //         credentials: 'same-origin'
+  //       }
+  //     })
+  //   },
+  //   fetchOptions: {
+  //     credentials: 'include'
+  //  }
   })
 
 export default client
