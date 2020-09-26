@@ -47,7 +47,7 @@ const link = split(
 
 const client=new ApolloClient({
     //link,
-    uri: 'http://localhost:5000/graphql',
+    uri: 'https://floating-mountain-36472.herokuapp.com/graphql',
   //   cache: new InMemoryCache(),
   //   credentials: 'include',
   //   request: async operation => {
